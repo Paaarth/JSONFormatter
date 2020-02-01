@@ -47,6 +47,8 @@
                 JSON</button>
             <button ng-if='outputText && outputClass !=="text-danger"' class="btn btn-primary"
                 ng-click="downloadJSON();">Download JSON File</button>
+                <button class="btn btn-secondary"
+                ng-click="downloadCSV();">JSON to CSV</button>
             <div class="form-group">
                 <label for="comment">Formatted JSON:</label>
                 <textarea ng-bind="outputText" ng-class="outputClass" class="form-control" rows="9" cols="40"

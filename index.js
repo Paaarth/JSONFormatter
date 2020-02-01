@@ -60,10 +60,30 @@ angular.module('JSONFormaterApp', [])
             downloadLink.attr('href', window.URL.createObjectURL(blob));
             const date = new Date();
             const formattedDate = date.toLocaleString('en-GB', {
-            day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
             }).replace(/ /g, '-');
-            downloadLink.attr('download', formattedDate+'.json');
+            downloadLink.attr('download', formattedDate + '.json');
             downloadLink[0].click();
         }
+        $scope.downloadCSV = function () {
+            var array = typeof $scope.inputText != 'object' ? JSON.parse($scope.inputText) : $scope.inputText;
+            var str = '';
+            for (var i = 0; i < array.length; i++) {
+                var line = '';
+                for (var index in array[i]) {
+                    if (line != '') line += ','
 
+                    line += array[i][index];
+                }
+                str += line + '\r\n';
+            }
+            var downloadLink = document.createElement("a");
+            var blob = new Blob(["\ufeff", str]);
+            var url = URL.createObjectURL(blob);
+            downloadLink.href = url;
+            downloadLink.download = "data.csv";
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        }
     }]);
