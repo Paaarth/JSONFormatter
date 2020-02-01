@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta lang="en" name="title" content="Free JSON Formatter &amp; JSON Validator" />
+    <meta name="author" content="Github- Parth Raval">
+    <meta lang="en" name="description"
+        content="Online JSON Formatter and JSON Validator will format JSON data, free online JSON formatter lets you chose your indentation level" />
+    <meta name="language" content="en" />
+    <meta name="rating" content="general" />
+    <meta lang="en" name="keywords"
+        content="JSON Formatter &amp; Validator beautifies,json formatter,format json online,
+    jsonlint, , JSON Cleaner, json format,format json,JSON Checker,json beautify,json validator, online json formatter, json formatter online, json beautifier" />
+    <title>JSON Formatter & Validator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        textarea {
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="/">JSON Formatter</a>
+    </nav>
+    <div class="mt-2 container">
+        <form ng-app="JSONFormaterApp" ng-controller="JSONFormaterController">
+            <div class="form-group">
+                <label for="comment">Your JSON:</label>
+                <textarea ng-model="inputText" id="inputTextarea" class="form-control" rows="9" cols="40"
+                    placeholder="Paste your JSON here" autofocus="true"></textarea>
+            </div>
+            <button class="btn btn-light" ng-click="clearInput();">Clear Input Text</button>
+            <label>
+                <select class="browser-default custom-select" ng-options="option.label for option in indentOptions"
+                    ng-model="selectedIndentOption">
+                    <option selected>Selet Indentation</option>
+                </select>
+            </label>
+            <button ng-if='outputText && outputClass !=="text-danger"' class="btn btn-success"
+                ng-click="copyToClipboard();">Copy Formatted
+                JSON</button>
+            <button ng-if='outputText && outputClass !=="text-danger"' class="btn btn-primary"
+                ng-click="downloadJSON();">Download JSON File</button>
+            <div class="form-group">
+                <label for="comment">Formatted JSON:</label>
+                <textarea ng-bind="outputText" ng-class="outputClass" class="form-control" rows="9" cols="40"
+                    placeholder="Reformatted JSON will appear here" readonly="true"></textarea>
+            </div>
+
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"
+        integrity="sha256-23hi0Ag650tclABdGCdMNSjxvikytyQ44vYGo9HyOrU=" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
